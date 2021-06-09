@@ -1,17 +1,23 @@
 use std::env;
 
-const COMMANDS: [&'static str; 1] = ["help"];
+enum CmdName {
+    Help,
+    None
+}
+
+enum Arg {
+    See,
+    None
+}
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let cmd: Command = Command::new(&args);
-
-    println!("Command was {} {}", cmd.name, cmd.option.unwrap());
 }
 
 struct Command{
-    name: String,
-    option: Option<String>,
+    name: CmdName,
+    arg: Arg,
 }
 
 impl Command{
@@ -23,11 +29,18 @@ impl Command{
             panic!("todo: Too many arguments! Find available commands: todo help");
         }
 
-        for cmd in
+        let name: CmdName;
+        let arg: Arg;
 
-        let name: String = args[1].clone();
-        let option: Option<String> = Some(args[2].clone());
+        match args[1].as_str(){
+            "help" => name = CmdName::Help,
+            _ => panic!("coiso"),
+        }
+        match args[2].as_str(){
+            "see" => arg = Arg::See,
+            _ => panic!("coiso"),
+        }
 
-        Command {name, option}
+        Command {name, arg}
     }
 }
