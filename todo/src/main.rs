@@ -2,12 +2,12 @@ use std::env;
 
 enum CmdName {
     Help,
-    None
+    List,
 }
 
 enum Arg {
-    See,
-    None
+    List,
+    None,
 }
 
 fn main() {
@@ -34,11 +34,16 @@ impl Command{
 
         match args[1].as_str(){
             "help" => name = CmdName::Help,
-            _ => panic!("coiso"),
+            _ => panic!("todo: {} is not a command", args[1].as_str()),
         }
-        match args[2].as_str(){
-            "see" => arg = Arg::See,
-            _ => panic!("coiso"),
+        if args.len() == 3{
+            match args[2].as_str(){
+                "list" => arg = Arg::List,
+                _ => panic!("todo: {} is not an option for any command", args[2]),
+            }
+        }
+        else{
+            arg = Arg::None;
         }
 
         Command {name, arg}
