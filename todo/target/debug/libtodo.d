@@ -1,0 +1,1 @@
+/Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO\ PRINCIPAL/GITHUB/rusty_todo/todo/target/debug/libtodo.rlib: /Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO\ PRINCIPAL/GITHUB/rusty_todo/todo/src/lib.rs

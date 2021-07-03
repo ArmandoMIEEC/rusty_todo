@@ -1,0 +1,9 @@
+/Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO PRINCIPAL/GITHUB/rusty_todo/todo/target/debug/deps/yaml_rust-2bc4603eb7b90d38.rmeta: /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/lib.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/yaml.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/scanner.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/parser.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/emitter.rs
+
+/Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO PRINCIPAL/GITHUB/rusty_todo/todo/target/debug/deps/yaml_rust-2bc4603eb7b90d38.d: /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/lib.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/yaml.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/scanner.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/parser.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/emitter.rs
+
+/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/lib.rs:
+/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/yaml.rs:
+/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/scanner.rs:
+/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/parser.rs:
+/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/yaml-rust-0.3.5/src/emitter.rs:

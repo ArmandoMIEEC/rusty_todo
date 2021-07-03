@@ -1,0 +1,12 @@
+name: todo
+version: "1.0"
+author: J. Armando R. <zearmando2000@gmail.com>
+about: a simple todo cli app made with rust
+subcommands:
+    - create:
+        about: creates new todo list
+        args:
+            - list_name:
+                help: list name
+                index: 1
+                required: true
