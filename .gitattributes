@@ -1,2 +1,2 @@
-*.mak linguist-detectable=false
+*.d linguist-detectable=false
 *.rs linguist-detectable=true
