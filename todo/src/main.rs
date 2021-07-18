@@ -1,5 +1,5 @@
 mod todo;
-use todo::subcommands::create;
+use todo::subcmds;
 use clap::{App, load_yaml};
 use std::io::{Error, ErrorKind};
 
@@ -17,7 +17,7 @@ fn main() -> Result<(), Error>{
                 },
             };
 
-            create(list_name)?;
+            subcmds::create(list_name)?;
         },
         _=> println!("Default"),
     }
