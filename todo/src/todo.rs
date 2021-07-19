@@ -6,6 +6,7 @@ pub mod subcmds{
     use rusqlite::{Connection, Result};
 
     pub fn create(list_name: &str) -> Result<(), Box<dyn error::Error>>{
+        let list_path_str: &str;
         match dirs::home_dir() {
             Some(home_path) =>{
                 let db_path = format!(".rusty_todo/{}.db", list_name);
@@ -17,7 +18,10 @@ pub mod subcmds{
                 }
 
                 match list_path.to_str(){
-                    Some(file) => {File::create(file)?;},
+                    Some(file) => {
+                        File::create(file)?;
+                        list_path_str = file;
+                    },
                     None => {
                         let error = Error::new(ErrorKind::AddrNotAvailable, "Could not create path to todo list db file!");
                         return Err(Box::new(error));
@@ -33,7 +37,7 @@ pub mod subcmds{
 
                 println!("{}", sql_cmd);
 
-                let conn = Connection::open(list_path.to_str().unwrap())?;
+                let conn = Connection::open(list_path_str)?;
                 conn.execute(sql_cmd.as_str(), [ ],)?;
             },
             None => {
