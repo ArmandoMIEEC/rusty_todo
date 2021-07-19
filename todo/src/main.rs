@@ -2,8 +2,9 @@ mod todo;
 use todo::subcmds;
 use clap::{App, load_yaml};
 use std::io::{Error, ErrorKind};
+use std::error;
 
-fn main() -> Result<(), Error>{
+fn main() -> Result<(), Box<dyn error::Error>>{
     let yaml = load_yaml!("cli.yaml");
     let app_m = App::from(yaml).get_matches();
 
@@ -13,7 +14,7 @@ fn main() -> Result<(), Error>{
                 Some(name)  => name,
                 None =>{
                     let error = Error::new(ErrorKind::Other, "Missing Arguments!");
-                    return Err(error);
+                    return Err(Box::new(error));
                 },
             };
 

@@ -1,11 +1,11 @@
 pub mod subcmds{
     use std::io::{Error, ErrorKind};
+    use std::error;
     use std::fs::File;
-    //extern crate rusqlite;
-    //use rusqlite::{Connection, Result};
-    //use rusqlite::NO_PARAMS;
+    extern crate rusqlite;
+    use rusqlite::{Connection, Result};
 
-    pub fn create(list_name: &str) -> Result<(), Error>{
+    pub fn create(list_name: &str) -> Result<(), Box<dyn error::Error>>{
         match dirs::home_dir() {
             Some(home_path) =>{
                 let db_path = format!(".rusty_todo/{}.db", list_name);
@@ -13,31 +13,35 @@ pub mod subcmds{
 
                 if list_path.exists(){
                     let error = Error::new(ErrorKind::AlreadyExists, "Todo list already exists!");
-                    return Err(error);
+                    return Err(Box::new(error));
                 }
 
                 match list_path.to_str(){
                     Some(file) => {File::create(file)?;},
                     None => {
                         let error = Error::new(ErrorKind::AddrNotAvailable, "Could not create path to todo list db file!");
-                        return Err(error);
+                        return Err(Box::new(error));
                     },
                 }
 
-                /*let conn = Connection::open(list_path.to_str().unwrap())?;
-                conn.execute(
-                    "create table if not exists ?1(
-                        task_id integer,
-                        task text,
-                    )", &[&list_name],
-                )?;*/
+                let mut sql_cmd = String::from("create table if not exists ");
+                sql_cmd.push_str(list_name);
+                sql_cmd.push_str(" (
+                    task_id integer,
+                    task text
+                )");
+
+                println!("{}", sql_cmd);
+
+                let conn = Connection::open(list_path.to_str().unwrap())?;
+                conn.execute(sql_cmd.as_str(), [ ],)?;
             },
             None => {
                 let error = Error::new(ErrorKind::AddrNotAvailable, "Could not get home directory!");
-                return Err(error);
+                return Err(Box::new(error));
             },
       }
 
-      sOk(())
+      Ok(())
     }
 }
