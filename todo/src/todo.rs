@@ -6,7 +6,6 @@ pub mod subcmds{
     use rusqlite::{Connection, Result};
 
     pub fn create(list_name: &str) -> Result<(), Box<dyn error::Error>>{
-        let list_path_str: &str;
         match dirs::home_dir() {
             Some(home_path) =>{
                 let db_path = format!(".rusty_todo/{}.db", list_name);
@@ -17,6 +16,7 @@ pub mod subcmds{
                     return Err(Box::new(error));
                 }
 
+                let list_path_str: &str;
                 match list_path.to_str(){
                     Some(file) => {
                         File::create(file)?;
@@ -47,5 +47,9 @@ pub mod subcmds{
       }
 
       Ok(())
+    }
+
+    pub fn add(task: &str) -> Result<(), Box<dyn error::Error>>{
+        Ok(())
     }
 }
