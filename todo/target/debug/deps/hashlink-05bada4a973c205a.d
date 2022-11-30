@@ -1,8 +1,0 @@
-/Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO PRINCIPAL/GITHUB/rusty_todo/todo/target/debug/deps/hashlink-05bada4a973c205a.rmeta: /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lib.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_map.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_set.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lru_cache.rs
-
-/Users/josearmandoborgesrodrigues/Desktop/MAC/DIRETÓRIO PRINCIPAL/GITHUB/rusty_todo/todo/target/debug/deps/hashlink-05bada4a973c205a.d: /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lib.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_map.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_set.rs /Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lru_cache.rs
-
-/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lib.rs:
-/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_map.rs:
-/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/linked_hash_set.rs:
-/Users/josearmandoborgesrodrigues/.cargo/registry/src/github.com-1ecc6299db9ec823/hashlink-0.7.0/src/lru_cache.rs:

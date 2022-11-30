@@ -1,12 +1,24 @@
 name: todo
-version: "1.0"
+version: '1.0'
 author: J. Armando R. <zearmando2000@gmail.com>
-about: a simple todo cli app made with rust
+about: A simple todo cli app made with rust
 subcommands:
-    - create:
-        about: creates new todo list
-        args:
-            - list_name:
-                help: list name
-                index: 1
-                required: true
+  - create:
+      about: Creates a new todo list
+      args:
+        - list_name:
+            help: >-
+              As ASCII string of your choice with no
+              whitespaces
+            index: 1
+            required: true
+  - list:
+      about: Displays the name of every list included in teh specified list_group
+      args:
+        - list_group:
+            help: |-
+              List groups that can be displayed:
+              active -> the todo list currently being used
+              all -> all todo lists available
+            index: 1
+            required: true
