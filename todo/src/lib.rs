@@ -1,3 +1,2 @@
-mod errors {
-    enum ToDoErrors {}
-}
+#[cfg(test)]
+mod tests {}
