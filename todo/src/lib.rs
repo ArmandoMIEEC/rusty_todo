@@ -1,165 +1,123 @@
-pub mod liberrors {
-    use std::fmt;
+#[cfg(test)]
+mod tests {}
 
-    #[derive(Debug)]
-    pub enum TodoError {
-        ListExists(String),
-        CannotCreateList(String),
-        CannotCreateDir(String),
+/// # Error Handling
+/// In rusty todo there are 3 categories of errors:
+/// - Recoverable errors;
+/// - Unrecoverable errors that trigger a user notification;
+/// - Unrecoverable erros that cause panic.
+/// ### Recoverable Errors
+/// **Possible actions:** Propagate (if in not in main) OR Solve error (if in main).
+///
+/// **Note:** Rusty To-Do's lib crate does not panic, but might return early. It propagates every single error to the binary crate, which then decides if an error is recoverable or not (Rusty To-Do uses the "anyhow" crate for error propagation and "thiserror" to derive handel custom error trait implementations).
+/// ### Unrecoverable Errors (user notification)
+/// **Possible actions:** Notify user, end program without panicking.
+///
+/// **Note:** This kind of error should be used when the error is likely caused by the user and there is no relevant information to be displayed from a developer standpoint (ex: user used command line arguments incorrectly). Notificating the user will sufice.
+/// ### Unrecoverable errors (panic)
+/// **Possible actions:** Notify user and panic OR panic.
+///
+/// **Note:** This are technical errors that are not likely user triggered and are relevant from a developer standpoint. This should be the most common type of error during development and the least common after release. This errors most likely indicate bugs.
+pub mod errors {
+    use thiserror::Error;
+
+    #[derive(Error, Debug)]
+    pub enum ToDoError {
+        #[error("Error - could not create file: {0}.")]
         CannotCreateFile(String),
-        AddrNotAvailable(String),
-        SQLError(String),
-    }
-
-    impl std::error::Error for TodoError {}
-
-    impl fmt::Display for TodoError {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            match self {
-                TodoError::ListExists(list) => {
-                    write!(f, "A list named {} already exists!", &list[..])
-                }
-                TodoError::CannotCreateList(list) => {
-                    write!(f, "Could not create db file for list {}!", &list[..])
-                }
-                TodoError::AddrNotAvailable(addr) => {
-                    write!(f, "Could not find addressk {}!", &addr[..])
-                }
-                TodoError::CannotCreateDir(dir) => {
-                    write!(f, "Could not create directory {}!", &dir[..])
-                }
-                TodoError::CannotCreateFile(file) => {
-                    write!(f, "Could not create file {}!", &file[..])
-                }
-                TodoError::SQLError(error) => {
-                    write!(f, "SQL error: {}!", &error[..])
-                }
-            }
-        }
+        #[error("Error - not found: {0}.")]
+        NotFound(String),
+        #[error("Error - unable to: {0}.")]
+        Unable(String),
     }
 }
 
-pub mod subcmds {
-    use crate::liberrors::TodoError;
-    use std::error;
-    use std::fs;
-    extern crate rusqlite;
-    use crate::config;
-    use rusqlite::{Connection, Result};
-
-    pub fn create(list_name: &str) -> Result<(), TodoError> {
-        let lists_dir = config::find_listsdir().unwrap();
-        let list_path = lists_dir.join(list_name);
-        let list_path_str: &str;
-
-        if list_path.exists() {
-            return Err(TodoError::ListExists(String::from(list_name)));
-        }
-
-        match list_path.to_str() {
-            Some(file) => {
-                fs::File::create(file).expect("Error creating todo list db file!");
-                list_path_str = file;
-            }
-            _ => {
-                panic!("Error creating path str for list db file!");
-            }
-        }
-
-        let mut sql_cmd = String::from("create table if not exists ");
-        sql_cmd.push_str(list_name);
-        sql_cmd.push_str(
-            " (
-                    task_id integer,
-                    task text
-                )",
-        );
-
-        let conn = Connection::open(list_path_str).expect("Error opening sql connection!");
-        match conn.execute(sql_cmd.as_str(), []) {
-            Err(e) => return Err(TodoError::SQLError(String::from(format!("{}", e)))),
-            _ => {}
-        }
-
-        Ok(())
+/*pub mod data {
+    pub struct Item {
+        item_id: u8,
+        item_name: String,
+        item_done: bool,
+        item: String,
     }
-
-    pub fn list(list_group: &str) -> Result<(), Box<dyn error::Error>> {
-        match list_group {
-            "all" => {
-                let files = fs::read_dir("/Users/armando/.rusty_todo/todo_lists").unwrap();
-                for file in files {
-                    println!("Name: {}", file.unwrap().path().display())
-                }
-            }
-            _ => {
-                println!("Vazio!");
-            }
-        }
-        Ok(())
+    pub struct List {
+        list_id: u8,
+        list_name: String,
+        items: Vec<Item>,
     }
-}
+}*/
 
-pub mod config {
+///Support Functions
+pub mod utilities {
+    use crate::errors::ToDoError;
+    use anyhow::bail;
+    use anyhow::Result;
     use serde::{Deserialize, Serialize};
     use serde_json::json;
-    use std::error;
     use std::fs;
-    use std::io::{Error, ErrorKind};
     use std::path::PathBuf;
 
-    #[derive(Serialize, Deserialize)]
+    #[derive(Serialize, Deserialize, Debug)]
     struct Config {
-        lists_dirpath: String,
+        db_path: PathBuf,
     }
 
-    pub fn find_listsdir() -> Result<PathBuf, Box<dyn error::Error>> {
+    fn find_config() -> Result<PathBuf> {
         match dirs::home_dir() {
             Some(home_path) => {
-                let config_str = ".rusty_todo/config";
-                let config_path = home_path.join(config_str);
-                let config_path_str: &str;
-                if config_path.exists() {}
-                match config_path.to_str() {
-                    Some(file) => {
-                        fs::File::create(file)?;
-                        config_path_str = file;
-                    }
-                    None => {
-                        let error = Error::new(
-                            ErrorKind::AddrNotAvailable,
-                            "Could not create config file!",
-                        );
-                        return Err(Box::new(error));
-                    }
-                }
-
-                let dir_str = ".rusty_todo/todo_lists/";
-                let lists_dirpath = home_path.join(dir_str);
-                if !lists_dirpath.exists() {
-                    match lists_dirpath.to_str() {
-                        Some(dir) => {
-                            fs::create_dir(dir)?;
-                            let data = json!({ "lists_dirpath": dir });
-                            fs::write(config_path_str, data.to_string())?;
+                let config_path = home_path.join(".todo/config.txt");
+                if !config_path.exists() {
+                    match config_path.to_str() {
+                        Some(file) => {
+                            fs::File::create(file)?;
+                            let data = json!({ "db_path": ""});
+                            fs::write(file, data.to_string())?;
                         }
                         None => {
-                            let error = Error::new(
-                                ErrorKind::AddrNotAvailable,
-                                "Could not create todo lists directory!",
-                            );
-                            return Err(Box::new(error));
+                            bail!(ToDoError::CannotCreateFile(String::from("config.txt",)))
                         }
-                    };
+                    }
                 }
-
-                Ok(lists_dirpath)
+                Ok(config_path)
             }
-            None => {
-                let error =
-                    Error::new(ErrorKind::AddrNotAvailable, "Could not get home directory!");
-                return Err(Box::new(error));
-            }
+            None => bail!(ToDoError::NotFound(String::from("Home Directory"))),
         }
+    }
+
+    pub fn find_db() -> Result<PathBuf> {
+        let config_path = find_config()?;
+        let config_contents = fs::read_to_string(config_path)?;
+        let config: Config = serde_json::from_str(&config_contents[..])?;
+        match config.db_path.to_str() {
+            Some("") => {
+                println!("create database");
+            }
+            Some(path_str) => println!("open database: {path_str}"),
+            None => bail!(ToDoError::Unable(String::from(
+                "check if local database exists."
+            ))),
+        }
+
+        Ok(config.db_path)
+        //Verify if path is none -> if it is create db
+    }
+}
+
+///Command execution
+pub mod commands {
+    use crate::{errors::ToDoError, utilities::find_db};
+    use anyhow::Result;
+    //use std::error;
+    //use rusqlite::{Connection, Result};
+
+    pub fn create(list_name: String) -> Result<()> {
+        //check if local db exists
+        //if not, create local db
+        //check if list with same name exist
+        //if so return error will user notifocation
+        //check which id to use
+        //create list
+        //return
+        find_db()?;
+        Ok(())
     }
 }

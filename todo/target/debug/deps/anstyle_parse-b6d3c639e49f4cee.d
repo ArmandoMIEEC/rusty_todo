@@ -1,0 +1,9 @@
+/Users/jose.armando/Documents/mac/my_dir/github/rusty_todo/todo/target/debug/deps/anstyle_parse-b6d3c639e49f4cee.rmeta: /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/lib.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/params.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/mod.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/definitions.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/table.rs
+
+/Users/jose.armando/Documents/mac/my_dir/github/rusty_todo/todo/target/debug/deps/anstyle_parse-b6d3c639e49f4cee.d: /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/lib.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/params.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/mod.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/definitions.rs /Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/table.rs
+
+/Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/lib.rs:
+/Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/params.rs:
+/Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/mod.rs:
+/Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/definitions.rs:
+/Users/jose.armando/.cargo/registry/src/github.com-1ecc6299db9ec823/anstyle-parse-0.1.1/src/state/table.rs:

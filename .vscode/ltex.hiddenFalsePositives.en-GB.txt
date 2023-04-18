@@ -1,0 +1,7 @@
+{"rule":"UH_UH_COMMA","sentence":"^\\Q##pop\npop item: delete item from the end of the active list\npop item list_name: delete item from the end of a list in the active group\\E$"}
+{"rule":"OK","sentence":"^\\QDocumentation Guidelines\nFunctions\nShort Description\nReturn Values -Ok() -Err()\nPanic Scenarios\nExamples\\E$"}
+{"rule":"UH_UH_COMMA","sentence":"^\\Q##pop\npop item: delete item from the end of the active list\npop item list_name: delete item from the end of a list (list must belong to the active group)\\E$"}
+{"rule":"UH_UH_COMMA","sentence":"^\\Qpop\npop item: delete item from the end of the active list\npop item list_name: delete item from the end of a list (list must belong to the active group)\\E$"}
+{"rule":"OK","sentence":"^\\QDocumentation Guidelines\nFunctions\nShort Description\nReturn Values\nOk()\nErr()\nPanic Scenarios\nExamples\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\Qtakeput\n-takeput\ngroup list_number_array: group lists\ngroup list_array --names: group lists using list names\nungroup: ungroup active list group\\E$"}
+{"rule":"UH_UH_COMMA","sentence":"^\\Qpop\npop item: delete item from the end of the active list\npop item list_name: delete item from the end of a list (list must belong to the active group)\npop item --number list_number: delete item from the end of a list (list must belong to the active group)\\E$"}
